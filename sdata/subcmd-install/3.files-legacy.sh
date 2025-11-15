@@ -16,6 +16,14 @@ case "${SKIP_MISCCONF}" in
       fi
     done
     install_dir "dots/.local/share/konsole" "${XDG_DATA_HOME}"/konsole
+    cp -fa "dots/.zshrc" "$HOME/.zshrc"
+    for p in "completions" "history-substring-search" "syntax-highlighting"; do
+        if [[ ! -d "$HOME/.oh-my-zsh/custom/plugins/zsh-$p" ]]; then
+            git clone "https://github.com/zsh-users/zsh-$p" "$HOME/.oh-my-zsh/custom/plugins/zsh-$p"
+        fi
+    done
+    [[ ! -d "$HOME/.local/bin" ]] && mkdir -p "$HOME/.local/bin"
+    curl -s "https://ohmyposh.dev/install.sh" | bash -s -- -d "$HOME/.local/bin/"
     ;;
 esac
 
