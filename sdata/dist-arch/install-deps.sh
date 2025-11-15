@@ -103,6 +103,8 @@ for i in "${metapkgs[@]}"; do
   v install-local-pkgbuild "$i" "$metainstallflags"
 done
 
+doas pacman -S --needed --noconfirm satty
+
 ## Optional dependencies
 if pacman -Qs ^plasma-browser-integration$ ;then SKIP_PLASMAINTG=true;fi
 case $SKIP_PLASMAINTG in
