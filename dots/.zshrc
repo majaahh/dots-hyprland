@@ -1,0 +1,9 @@
+#!/bin/zsh
+source "$HOME/.config/zsh/commands.sh"
+source "$HOME/.config/zsh/exports.sh"
+source "$HOME/.config/zsh/shell.sh"
+source "$HOME/.config/zsh/alias.sh"
+source "$HOME/.config/zsh/misc.sh"
+source "$HOME/.config/zsh/user.sh"
+
+export PATH=$PATH:/home/ksawlii/.spicetify
