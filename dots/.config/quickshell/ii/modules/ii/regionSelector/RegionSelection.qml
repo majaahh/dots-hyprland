@@ -275,7 +275,7 @@ PanelWindow {
                 snipProc.command = [
                     "bash", "-c",
                     `mkdir -p '${StringUtils.shellSingleQuoteEscape(savePathBase)}' && \
-                    saveFileName="screenshot-$(date '+%Y-%m-%d_%H.%M.%S').png" && \
+                    saveFileName="$(date '+%Y-%m-%d_%H-%M').png" && \
                     savePath="${savePathBase}/$saveFileName" && \
                     ${cropToStdout} | tee >(wl-copy) > "$savePath" && \
                     ${cleanup}`
