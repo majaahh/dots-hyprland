@@ -262,25 +262,6 @@ PanelWindow {
             return `curl -sF files[]=@'${StringUtils.shellSingleQuoteEscape(filePath)}' ${root.fileUploadApiEndpoint} | jq -r '.files[0].url'`
         }
         switch (root.action) {
-            case RegionSelection.SnipAction.Copy:
-                if (saveScreenshotDir === "") {
-                    // not saving the screenshot, just copy to clipboard
-                    snipProc.command = ["bash", "-c", `${cropToStdout} | wl-copy && ${cleanup}`]
-                    break;
-                }
-
-                const savePathBase = root.saveScreenshotDir
-
-                snipProc.command = [
-                    "bash", "-c",
-                    `mkdir -p '${StringUtils.shellSingleQuoteEscape(savePathBase)}' && \
-                    saveFileName="$(date '+%Y-%m-%d_%H-%M').png" && \
-                    savePath="${savePathBase}/$saveFileName" && \
-                    ${cropToStdout} | tee >(wl-copy) > "$savePath" && \
-                    ${cleanup}`
-                ]
-
-                break;
             case RegionSelection.SnipAction.Edit:
                 snipProc.command = ["bash", "-c", `${cropToStdout} | satty --early-exit --initial-tool rectangle --copy-command wl-copy --annotation-size-factor 2 --filename - && ${cleanup}`]
                 break;
